@@ -1,0 +1,43 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Запуск БП
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Запуск БП</h1>
+        <button onclick="document.location='{% url 'reload_start' %}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'bizproc_starter:starter' %}" method="GET">
+         <input type="hidden"
+                name="entity"
+                value="COMPANY">
+         <input type="submit"
+                value="Запуск БП по компаниям">
+    </form>
+    <form action="{% url 'bizproc_starter:starter' %}" method="GET">
+         <input type="hidden"
+                name="entity"
+                value="DEAL">
+         <input type="submit"
+                value="Запуск БП по сделкам">
+    </form>
+    <form action="{% url 'bizproc_starter:starter' %}" method="GET">
+         <input type="hidden"
+                name="entity"
+                value="LEAD">
+         <input type="submit"
+                value="Запуск БП по лидам">
+    </form>
+    <form action="{% url 'bizproc_starter:starter' %}" method="GET">
+         <input type="hidden"
+                name="entity"
+                value="CONTACT">
+         <input type="submit"
+                value="Запуск БП по контактам">
+{% endblock %}
+

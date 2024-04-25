@@ -1,0 +1,109 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Выгрузка товаров
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .form_download_block {
+            padding: 10px;
+        }
+
+        .download_prods {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+            margin: 0 auto;
+            align-content: center;
+        }
+
+        .input_prods_but {
+            background-color: #0b0a0a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: auto;
+        }
+
+        .products_table {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            border: 3px solid #1d161d;
+        }
+    </style>
+{% endblock %}
+
+
+{% block header %}
+    <div class="header">
+        <h1>Выгрузка товаров</h1>
+        <button onclick="document.location='{% url 'reload_start' %}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="form_download_block">
+        <form class="download_prods"  action="{% url 'products_download:main_page' %}" method="POST">
+             <input type="submit" value="Загрузить товары" class="input_prods_but">
+        </form>
+    </div>
+
+    {% if df.empty == False %}
+        <table class="products_table">
+          <tr>
+            <td>
+                ID
+            </td>
+            {% for col in df.head.columns %}
+              <td>
+                {{col}}
+              </td>
+            {% endfor %}
+          </tr>
+            {% for index, row in df.head.iterrows %}
+              <tr>
+                <td>
+                    {{ index }}
+                </td>
+                {% for cell in row %}
+                  <td>
+                    {{cell}}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

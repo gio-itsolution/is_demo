@@ -52,7 +52,12 @@ INSTALLED_APPS = [
     'tg_openai_bot',
     'deal_for_powerbi',
     'autocomplete_crm_tasks',
-    'move_tasks_deadline_js'
+    'move_tasks_deadline_js',
+    "my_calls.apps.MyCallsConfig",
+    "my_duplicate_searcher.apps.MyDuplicateSearcherConfig",
+    "my_user_manager.apps.MyUserManagerConfig",
+    "bizproc_starter.apps.BizprocStarterConfig",
+    "products_download.apps.ProductsDownloadConfig"
 ]
 
 MIDDLEWARE = [
@@ -96,6 +101,7 @@ DATABASES = {
         'HOST': 'localhost',
     },
 }
+
 
 
 AUTH_PASSWORD_VALIDATORS = [

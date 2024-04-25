@@ -1,0 +1,29 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Найдены следующие дубликаты {{ method_word }} на портале
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Найдены следующие дубликаты {{ method_word }} на портале:</h1>
+        <button onclick="document.location='{% url 'my_duplicate_searcher:main_page' %}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <table>
+          <tr>
+            <th>Сущность</th>
+            <th>Количество дубликатов</th>
+          </tr>
+          {% for name, count in res.items %}
+          <tr>
+            <td>{{ name }}</td>
+            <td>{{ count }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+{% endblock %}

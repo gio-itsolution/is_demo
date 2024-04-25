@@ -1,0 +1,50 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Поиск дубликатов
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Поиск дубликатов</h1>
+        <button onclick="document.location='{% url 'reload_start' %}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'my_duplicate_searcher:duplicate_finder' %}" method="GET">
+         <input type="hidden"
+                name="method"
+                value="product">
+         <input type="submit"
+                value="Дубликаты товаров">
+    </form>
+    <form action="{% url 'my_duplicate_searcher:duplicate_finder' %}" method="GET">
+         <input type="hidden"
+                name="method"
+                value="deal">
+         <input type="submit"
+                value="Дубликаты сделок">
+    </form>
+    <form action="{% url 'my_duplicate_searcher:duplicate_finder' %}" method="GET">
+         <input type="hidden"
+                name="method"
+                value="lead">
+         <input type="submit"
+                value="Дубликаты лидов">
+    </form>
+    <form action="{% url 'my_duplicate_searcher:duplicate_finder' %}" method="GET">
+         <input type="hidden"
+                name="method"
+                value="contact">
+         <input type="submit"
+                value="Дубликаты контактов">
+    </form>
+        <form action="{% url 'my_duplicate_searcher:duplicate_finder' %}" method="GET">
+         <input type="hidden"
+                name="method"
+                value="company">
+         <input type="submit"
+                value="Дубликаты компаний">
+    </form>
+{% endblock %}

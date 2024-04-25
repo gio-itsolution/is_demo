@@ -1,0 +1,18 @@
+{% extends "base_app.html" %}
+
+{% block header %}
+    <div class="header">
+        <h1>Запуск бизнес процесса по {{ entity }}</h1>
+        <button onclick="document.location='{% url 'bizproc_starter:main_page' %}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="form-wrapper">
+        <form action="{% url 'bizproc_starter:starter' %}" method="post" class="form">
+            {{ form.as_p }}
+            <input type="hidden" name="entity" value={{ entity }}>
+            <input type="submit" value="Запустить выбранный БП">
+        </form>
+    </div>
+{% endblock %}
