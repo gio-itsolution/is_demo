@@ -52,5 +52,7 @@ urlpatterns = [
     path('my_user_manager/', include('my_user_manager.urls')),
     path('bizproc_starter/', include('bizproc_starter.urls')),
     path('products_download/', include('products_download.urls')),
+    path('test_app/', include('test_app.urls')),
+    path('import_entity/', include('import_entity.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

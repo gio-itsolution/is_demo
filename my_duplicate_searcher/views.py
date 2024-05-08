@@ -34,6 +34,7 @@ def find_duplicates(request):
 
     return render(request, 'my_duplicate.html', context={'res': res, 'method_word': method_word})
 
+
 @main_auth(on_cookies=True)
 def main_page(request):
     '''

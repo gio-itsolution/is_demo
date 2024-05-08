@@ -57,7 +57,9 @@ INSTALLED_APPS = [
     "my_duplicate_searcher.apps.MyDuplicateSearcherConfig",
     "my_user_manager.apps.MyUserManagerConfig",
     "bizproc_starter.apps.BizprocStarterConfig",
-    "products_download.apps.ProductsDownloadConfig"
+    "products_download.apps.ProductsDownloadConfig",
+    "import_entity.apps.ImportEntityConfig",
+    "test_app.apps.TestAppConfig"
 ]
 
 MIDDLEWARE = [
