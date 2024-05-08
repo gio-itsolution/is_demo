@@ -1,0 +1,34 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Импорт компаний
+{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1 class="h123">Импорт компаний</h1>
+        <button onclick="goBack()">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form class="form2" action="{% url 'import_entity:main_page' %}" method="POST" enctype="multipart/form-data">
+        <input class="input3" type="text" name="excel_url" value="https://docs.google.com/spreadsheets/d/1ZuKXEK0hwJyxFwGxoi77G0PaOh4Qg4SDZBNkHDws2iU/edit#gid=1891471437">
+        <input class="input2" type="submit" value="Импортировать">
+    </form>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="//api.bitrix24.com/api/v1/"></script>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
+{% endblock %}

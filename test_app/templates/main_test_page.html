@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script type="text/javascript">
+    window.addEventListener('onBitrixLiveChat', function(event) {
+        var widget = event.detail.widget;
+
+        widget.subscribe ({
+            type: BX.LiveChatWidget.SubscriptionType.sessionStart,
+            callback: function(event) {
+                alert(`Session Start`);
+            }
+          });
+
+        widget.subscribe ({
+            type: BX.LiveChatWidget.SubscriptionType.sessionFinish,
+            callback: function(event) {
+                alert(`Session End`);
+            }
+          });
+
+        widget.subscribe({
+            type: BX.LiveChatWidget.SubscriptionType.operatorMessage,
+            callback: function(data) {
+                // Проверка на системное сообщение
+                if (data.message.senderId != 0) {
+                    // Извлечение данных чата
+                    var chatId = data.chatId;
+                    var chatName = data.chat[chatId].name;
+                    var chatOwner = data.chat[chatId].owner;
+
+                    // Извлечение данных пользователя
+                    var senderId = data.message.senderId;
+                    var userName = data.users[senderId].name;
+                    var userFirstName = data.users[senderId].first_name;
+                    var userLastName = data.users[senderId].last_name;
+                    var userEmail = data.users[senderId].email;
+
+                    // Извлечение данных сообщения
+                    var messageId = data.message.id;
+                    var messageText = data.message.text;
+                    var messageDate = data.message.date;
+
+                    // Вывод информации в консоль для проверки
+                    console.log("Chat ID: " + chatId);
+                    console.log("Chat Name: " + chatName);
+                    console.log("Chat Owner: " + chatOwner);
+                    console.log("Sender ID: " + senderId);
+                    console.log("User Name: " + userName);
+                    console.log("User First Name: " + userFirstName);
+                    console.log("User Last Name: " + userLastName);
+                    console.log("User Email: " + userEmail);
+                    console.log("Message ID: " + messageId);
+                    console.log("Message Text: " + messageText);
+                    console.log("Message Date: " + messageDate);
+                } else {
+                    // Вывод данных о системном сообщении
+                    var chatId = data.chatId;
+                    var senderId = data.message.senderId;
+                    var messageText = data.message.text;
+                    var messageDate = data.message.date;
+
+                    console.log("Chat ID: " + chatId);
+                    console.log("Sender ID: " + senderId);
+                    console.log("Message Text: " + messageText);
+                    console.log("Message Date: " + messageDate);
+
+                }
+            }
+        });
+
+        // Установка дополнительных данных (публикуется при начале новой сессии, расширенный формат)
+        widget.setCustomData([
+            // Информация о пользователе (без привязки к CRM)
+            {USER: {
+              NAME : "Виктор Иванов",
+              AVATAR : "http://files.shelenkov.com/images/avatar-ivanov.jpg",
+            }},
+            // Дополнительная информация любого вида
+            {GRID: [
+              {
+                NAME : "Phone",
+                VALUE : "+78005553535", // Передайте сюда шаблонизатором телефон клиента
+                DISPLAY : "LINE",
+              },
+              {
+                NAME : "E-mail",
+                VALUE : "test@example.com", // Передайте сюда шаблонизатором email клиента
+                DISPLAY : "LINE",
+              },
+            ]},
+            // Изображение (можно передавать вместо миниатюры)
+            {IMAGE: {
+                NAME: "Изображение",
+                LINK: "http://files.shelenkov.com/images/avatar-ivanov.jpg", // Передайте шаблонизатором прямую ссылку на изображение аватара
+                PREVIEW: "http://files.shelenkov.com/images/avatar-ivanov.jpg", // Передайте шаблонизатором прямую ссылку на preview
+                WIDTH: 1000, // При необходимости укажите ширину изображения
+                HEIGHT: 638, // // При необходимости укажите высоту изображения
+            }},
+            ]);
+
+        });
+    </script>
+
+
+
+    <script>
+        (function(w,d,u){
+                var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+                var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+        })(window,document,'https://cdn-ru.bitrix24.ru/b29470206/crm/site_button/loader_4_qqa6lg.js');
+    </script>
+</body>
+</html>

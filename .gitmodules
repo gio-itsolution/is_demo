@@ -1,3 +1,6 @@
 [submodule "integration_utils"]
 	path = integration_utils
 	url = https://github.com/hlopikit/integration_utils
+[submodule "its_utils"]
+	path = its_utils
+	url = git@github-its_utils:hlopikit/its_utils.git
