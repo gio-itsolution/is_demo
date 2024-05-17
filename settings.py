@@ -59,7 +59,9 @@ INSTALLED_APPS = [
     "bizproc_starter.apps.BizprocStarterConfig",
     "products_download.apps.ProductsDownloadConfig",
     "import_entity.apps.ImportEntityConfig",
-    "test_app.apps.TestAppConfig"
+    "test_app.apps.TestAppConfig",
+    "my_best_call_manager.apps.MyBestCallManagerConfig",
+    "companies_list_sort.apps.CompaniesListSortConfig"
 ]
 
 MIDDLEWARE = [

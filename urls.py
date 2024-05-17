@@ -54,5 +54,6 @@ urlpatterns = [
     path('products_download/', include('products_download.urls')),
     path('test_app/', include('test_app.urls')),
     path('import_entity/', include('import_entity.urls')),
+    path('my_best_call_manager/', include('my_best_call_manager.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
-from best_call_manager.utils.table_creation import add_row, add_row_to_df
-from best_call_manager.utils.api_methods import add_task
-from best_call_manager.utils.datetime_utils import parse_date_in_dmy
+from my_best_call_manager.utils.table_creation import add_row, add_row_to_df
+from my_best_call_manager.utils.api_methods import add_task
+from my_best_call_manager.utils.datetime_utils import parse_date_in_dmy
 from usermanager.utils.search_manager import search_manager
 import pandas as pd
 
@@ -36,6 +36,10 @@ def setting_goals(but, calls):
 
     task_id_list = list()
     possible_calls = {}
+    users_tasks = {}
+
+    for user_id, user in user_dict.items():
+        users_tasks[user_id] = [user['FULL_NAME']]
 
 
     for group, call_df in call_info_df:
@@ -53,7 +57,16 @@ def setting_goals(but, calls):
                            parse_date_in_dmy(group[1]))
         task_id_list.append(task_id)
 
+        users_tasks[group[0]].append(task_id)
 
         possible_calls[task_id] = calls_for_task
 
-    return task_id_list, possible_calls
+    users_for_delete = []
+    for index, user_task in users_tasks.items():
+        if len(user_task) < 2:
+            users_for_delete.append(index)
+
+    for user_id in users_for_delete:
+        del users_tasks[user_id]
+
+    return task_id_list, possible_calls, users_tasks

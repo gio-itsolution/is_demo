@@ -1,0 +1,150 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Приложение "Лучший звонок менеджера за день"
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #007bff;
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px; /* Увеличение размера кнопок */
+            margin: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавление тени */
+            border-radius: 20px; /* Закругление углов кнопок */
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Изменение шрифта */
+            font-size: 16px; /* Изменение размера шрифта */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        .content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .salam {
+            background-color: darkred;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-text {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            margin-top: 40px; /* увеличим верхний отступ */
+            margin-bottom: 20px; /* добавим нижний отступ */
+            text-align: center;
+        }
+
+        .messages {
+            padding: 20px;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .messages li {
+            padding: 10px;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Крестик */
+        .closebtn {
+            color: #ff0101;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 26px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+        .thead th {
+            background-color: #3c3c3c;
+            color: white;
+        }
+
+        .thead th a {
+            color: red;
+        }
+
+        .tbody {
+            text-align: center;
+            display: none;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Приложение "Лучший звонок менеджера за день"</h1>
+        <button class="salam" onclick="document.location='{% url 'reload_start'%}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <form id="form-find-finish" action="{% url 'my_best_call_manager:my_find_finish_task' %}" method="POST" enctype="multipart/form-data">
+            <p><button id="btn-find-finish">Загрузить задачи</button></p>
+        </form>
+        <form id="form-start-find" action="{% url 'my_best_call_manager:my_start_find_all_call' %}" method="POST" enctype="multipart/form-data">
+            <p><button id="btn-start-find">Создать задачи</button></p>
+        </form>
+    </div>
+    <div class="info-text">
+        Для начала вам нужно поставить сотрудникам задачу для выбора своего лучшего звонка, для этого нажмите на кнопку "Создать задачи".<br>
+        Для того чтобы приложение собрало все лучшие звонки и создало пост с ними в группу нажмите кнопку "Загрузить задачи".
+    </div>
+
+    {% block sub_content %}
+    {% endblock sub_content %}
+
+    {% block messages %}
+    {% endblock %}
+
+{% endblock %}

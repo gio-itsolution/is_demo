@@ -1,0 +1,70 @@
+{% extends "my_best_call_manager_temp.html" %}
+
+
+
+{% block sub_content %}
+    {% if post_id and user_id %}
+        <div class="before_table">
+            <a href="https://b24-tt5i10.bitrix24.ru/company/personal/user/{{ user_id }}/blog/{{ post_id }}/" target="_blank">Пост создан!</a>
+            <p>Нажмите ниже, чтобы раскрыть!</p>
+        </div>
+    {% endif %}
+    {% if completed_tasks %}
+        <table class="table">
+            <thead class="thead" id="thead-completed">
+                    <tr>
+                        <th scope="col">Пользователь</th>
+                        <th scope="col">Завершенная задача</th>
+                    </tr>
+            </thead>
+            {% for key, value in completed_tasks.items %}
+                <tbody class="tbody" id="tbody-{{ key }}">
+                     <tr>
+                        <td>
+                            <a href="https://b24-tt5i10.bitrix24.ru/company/personal/user/{{ value.responsibleId }}/" target="_blank">{{ value.responsible.name }}</a>
+                        </td>
+                        <td>
+                            <a href="https://b24-tt5i10.bitrix24.ru/company/personal/user/{{ value.responsibleId }}/tasks/task/view/{{ key }}/" target="_blank">Задача {{ value.title }}</a>
+                        </td>
+                     </tr>
+                </tbody>
+                <script>
+                    document.getElementById("thead-completed").addEventListener("click", function() {
+                        let tbody = document.getElementById("tbody-{{ key }}");
+                        tbody.style.display = tbody.style.display === "none" ? "table-row-group" : "none";
+                    });
+                </script>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock sub_content %}
+
+{% block messages %}
+    {% if messages %}
+         <ul class="messages">
+             {% for message in messages %}
+                 <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                 </li>
+             {% endfor %}
+         </ul>
+    {% endif %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.messages li');
+            messages.forEach(function(message) {
+                if (message.classList.contains('success')) {
+                    message.style.backgroundColor = 'green';
+                } else if (message.classList.contains('info')) {
+                    message.style.backgroundColor = '#007bff';
+                } else if (message.classList.contains('warning')) {
+                    message.style.backgroundColor = 'orange';
+                } else if (message.classList.contains('error')) {
+                    message.style.backgroundColor = 'red';
+                } else if (message.classList.contains('debug')) {
+                    message.style.backgroundColor = 'gray';
+                }
+            });
+        });
+    </script>
+{% endblock %}
