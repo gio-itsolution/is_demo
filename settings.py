@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     "import_entity.apps.ImportEntityConfig",
     "test_app.apps.TestAppConfig",
     "my_best_call_manager.apps.MyBestCallManagerConfig",
-    "companies_list_sort.apps.CompaniesListSortConfig"
+    "companies_list_sort.apps.CompaniesListSortConfig",
+    "film_find_robot.apps.FilmFindRobotConfig"
 ]
 
 MIDDLEWARE = [

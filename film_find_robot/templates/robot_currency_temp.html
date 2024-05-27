@@ -1,0 +1,29 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Робот находящий фильмы по названию
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Робот находящий фильмы по названию</h1>
+        <button onclick="document.location='{% url 'reload_start'%}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="{% url 'bitrix_film_robot:install_robot' %}" method="POST">
+            <button class="c-button">Установить</button>
+        </form>
+
+        <form action="{% url 'bitrix_film_robot:uninstall_robot' %}" method="POST">
+            <button class="c-button">Удалить</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="//api.bitrix24.com/api/v1/"></script>
+{% endblock %}
+{% load static %}

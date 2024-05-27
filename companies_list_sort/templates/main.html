@@ -1,0 +1,22 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Сортировать значения в списочном поле сущности
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Сортировать значения в списочном поле сущности</h1>
+        <button onclick="document.location='{% url 'reload_start'%}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+
+{% endblock %}
+
