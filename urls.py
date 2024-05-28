@@ -57,5 +57,6 @@ urlpatterns = [
     path('my_best_call_manager/', include('my_best_call_manager.urls')),
     path('companies_list_sort/', include('companies_list_sort.urls')),
     path('film_finder/', include('film_find_robot.urls')),
+    path('task_moving/', include('task_date_moving.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

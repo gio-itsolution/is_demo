@@ -7,4 +7,4 @@ from robot_currency.models import CurrencyRobot
 @main_auth(on_cookies=True)
 def robot_currency(request):
 
-    return render(request, 'robot_currency_temp.html', locals())
+    return render(request, 'film_robot.html', locals())

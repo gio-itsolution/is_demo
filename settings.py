@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     "test_app.apps.TestAppConfig",
     "my_best_call_manager.apps.MyBestCallManagerConfig",
     "companies_list_sort.apps.CompaniesListSortConfig",
-    "film_find_robot.apps.FilmFindRobotConfig"
+    "film_find_robot.apps.FilmFindRobotConfig",
+    "task_date_moving.apps.TaskDateMovingConfig"
 ]
 
 MIDDLEWARE = [

@@ -71,7 +71,7 @@ class FilmRobot(BaseRobot):
             response = requests.get(BASE_URL, params=params, headers=headers)
             json_response = response.json()
 
-            film_name = json_response["docs"][0]["rating"]["imdb"]
+            film_name = json_response["docs"][0]["name"]
             film_rating = json_response["docs"][0]["rating"]["imdb"]
             year = json_response["docs"][0]["year"]
             short_description = json_response["docs"][0]["shortDescription"]

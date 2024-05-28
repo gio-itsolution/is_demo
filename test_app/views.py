@@ -7,4 +7,4 @@ def main_page(request):
     '''
     Render app main page
     '''
-    return render(request, 'main_test_page.html')
+    return render(request, 'test_page_2.html')

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script src="//api.bitrix24.com/api/v1/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.11/dayjs.min.js"></script>
+    <script>dayjs().format()</script>
+    <script>
+        BX24.init(function(){
+           BX24.callMethod('user.get', {ID: 1}, function(res){
+           if(res.data())
+           {
+               var user = res.data()[0];
+               if(!!user)
+                   console.log('Пользователя №' + user.ID + ' зовут ' + user.NAME);
+           }
+           });
+        });
+    </script>
+</body>
+</html>

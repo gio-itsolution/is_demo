@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <button
+        id="myButton"
+        title="Передвинуть крайний срок на день вперед"
+        onclick="myFunction()"
+        >
+        Не успеваю
+    </button>
+
+<form action="{% url 'task_date_moving:handler_task_main' %}" method="POST">
+    <input name="task_id" type="hidden" value=""/>
+    <input type="submit" value="Через сервер"/>
+</form>
+ {% if messages %}
+         <ul class="messages">
+             {% for message in messages %}
+                 <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                 </li>
+             {% endfor %}
+         </ul>
+ {% endif %}
+</body>
+
+
+<script src="//api.bitrix24.com/api/v1/"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.11/dayjs.min.js"></script>
+<script>dayjs().format()</script>
+
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+</html>
