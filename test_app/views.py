@@ -7,6 +7,6 @@ def main_page(request):
     '''
     Render app main page
     '''
-    test_var1 = (1, 2, 3)
-    test_var2 = (1, 2, 3,)
+    test_var1 = (1, 2, 3, 4)
+    test_var2 = (1, 2, 3, 4,)
     return render(request, 'test_page_2.html')
