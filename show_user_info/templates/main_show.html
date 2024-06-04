@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <p class="text">Выберите сотрудника: <button class="select_user" name="user" type="submit" id="select_User">Выбор сотрудника</button></p>
+
+    <button disabled type="submit" id="infoButton">Получить информацию</button>
+
+    <table id="user_info_table">
+        <thead>
+            <tr>
+                <th>Поле</th>
+                <th>Информация</th>
+            </tr>
+        </thead>
+        <tbody id="user_info_tbody">
+
+        </tbody>
+    </table>
+
+    <script src="//api.bitrix24.com/api/v1/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.11/dayjs.min.js"></script>
+    <script>dayjs().format()</script>
+    <script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
+
+    <script>
+        const url = '{% url "show_user_info:get_user_info" %}';
+        buttonGetInfo.addEventListener('click', function() {
+            getInfo(url)
+        });
+    </script>
+
+</body>
+</html>

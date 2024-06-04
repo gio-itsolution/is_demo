@@ -1,0 +1,130 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Установка расширения
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px; /* Добавлен отступ между хедером и формой */
+        }
+
+        .header button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .form122 {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form122 h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .form122 p {
+            text-align: center;
+        }
+
+        .input122 {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block head %}
+    <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.js"></script>
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h2>Информация о пользователях</h2>
+        <button onclick="document.location='{% url 'reload_start'%}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+     {% if messages %}
+         <ul class="messages">
+             {% for message in messages %}
+                 <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                 </li>
+             {% endfor %}
+         </ul>
+    {% endif %}
+    <div id="employeeGrid" style="height: 100vh; width: 100vw; padding-top: 40px" class="ag-theme-alpine"></div>
+
+    <script>
+        const users = {{ user_list|safe }};
+        const gridOptions = {
+            defaultColDef: {
+                floatingFilter: true,
+                resizable: true,
+                sortable: true,
+                filter: true,
+                autoHeight: true,
+                rowGroup: false
+            },
+            columnDefs: [
+                {
+                    headerName: "Фото",
+                    field: "PERSONAL_PHOTO",
+                    cellRenderer: function (params) {
+                        const imgUrl = params.data.PERSONAL_PHOTO;
+                        return `<img src="${imgUrl}" alt="img not found"`
+                    },
+                },
+                {headerName: "Сотрудник", field: "FULL_NAME", },
+                {headerName: "Статус", field: "IS_ONLINE", },
+                {headerName: "Пол", field: "PERSONAL_GENDER", },
+                {headerName: "Должность", field: "WORK_POSITION", },
+                {headerName: "Дата трудоустройства", field: "UF_EMPLOYMENT_DATE", },
+                {headerName: "E-mail", field: "EMAIL", },
+                {headerName: "Личный телефон", field: "PERSONAL_MOBILE", },
+                {headerName: "Дата рождения", field: "PERSONAL_BIRTHDAY", },
+
+            ],
+            rowData: users,
+            sideBar: true,
+            onGridReady: function (params) {
+                params.columnApi.autoSizeAllColumns();
+            }
+        };
+    document.addEventListener("DOMContentLoaded", () => {
+        let gridDiv = document.querySelector("#employeeGrid");
+        new agGrid.Grid(gridDiv, gridOptions);
+
+    });
+
+    </script>
+{% endblock %}

@@ -63,7 +63,10 @@ INSTALLED_APPS = [
     "my_best_call_manager.apps.MyBestCallManagerConfig",
     "companies_list_sort.apps.CompaniesListSortConfig",
     "film_find_robot.apps.FilmFindRobotConfig",
-    "task_date_moving.apps.TaskDateMovingConfig"
+    "task_date_moving.apps.TaskDateMovingConfig",
+    "show_user_info.apps.ShowUserInfoConfig",
+    "show_user_info_AG_GRID.apps.ShowUserInfoAgGridConfig",
+    "my_company_on_map.apps.MyCompanyOnMapConfig"
 ]
 
 MIDDLEWARE = [
@@ -107,7 +110,6 @@ DATABASES = {
         'HOST': 'localhost',
     },
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [

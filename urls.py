@@ -58,5 +58,8 @@ urlpatterns = [
     path('companies_list_sort/', include('companies_list_sort.urls')),
     path('film_finder/', include('film_find_robot.urls')),
     path('task_moving/', include('task_date_moving.urls')),
+    path('user_info/', include('show_user_info.urls')),
+    path('user_info_AG/', include('show_user_info_AG_GRID.urls')),
+    path('my_company_on_map/', include('my_company_on_map.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
